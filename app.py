@@ -1,6 +1,14 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import pickle
+import streamlit as st
+
+
+@st.cache_resource
+def load_model():
+    with open("random_forest_pipeline.pkl", "rb") as f:
+        model = pickle.load(f)
+    return model
 
 
 # =========================================================
@@ -20,11 +28,8 @@ st.set_page_config(
 
 @st.cache_resource
 def load_model():
-
-    model = joblib.load(
-        "random_forest_pipeline.pkl"
-    )
-
+    with open("random_forest_pipeline.pkl", "rb") as f:
+        model = pickle.load(f)
     return model
 
 
